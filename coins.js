@@ -2,15 +2,17 @@ var input = prompt("Enter the dollar amount");
 
 var inputValue = document.getElementById("input");
 var outputValue = document.getElementById("output");
+inputValue.innerHTML = input;
 
-var inputNode = document.createElement("div");
-inputNode.innerHTML = input;
-inputValue.appendChild(inputNode);
+var quarters;
+var dimes;
+var nickles;
+var pennies;
+var coinPurse = { quarters, dimes, nickles, pennies};
 
 function coinCounter () {
   // Initialize a JavaScript object to hold the coins
-  var coinPurse = {};
-
+  
   coinPurse.quarters = parseInt(input / .25);
   coinPurse.dimes = parseInt((input % .25) / .10);
   coinPurse.nickles = parseInt(((input % .25) % .10 )/ .05);
@@ -23,6 +25,22 @@ function coinCounter () {
 
 var coins = coinCounter()
 console.log(coins);
-var outputNode = document.createElement("div");
-  outputNode.innerHTML = coins;
-  outputValue.appendChild(outputNode); 
+ // coins = coins.toString();
+function display () {  
+	  
+	 for (var prop in coins) {
+	 	console.log(prop,coins[prop]) ;	
+	 	 if (prop !==  "pennies") {
+	 	 outputValue.innerHTML+=  prop + " : " + coins[prop] + " " + " , " + " <br>";
+	 	}
+	 	 if (prop === "pennies") {
+	 	 	outputValue.innerHTML +=  prop + " : " + coins[prop] + "<br>" + "} ";
+	 	 } 
+	 	 
+	 }
+	 
+ }
+ display();
+
+
+ 
